@@ -1,5 +1,5 @@
 Name:           rewaita
-Version:        1.0.8
+Version:        1.1.0
 Release:        1%{?dist}
 Summary:        A tool for recoloring GTK4/LibAdwaita apps to popular color schemes
 License:        GPL-3.0-or-later
