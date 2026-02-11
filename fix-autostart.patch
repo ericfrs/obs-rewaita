@@ -1,13 +1,6 @@
 --- a/src/main.py
 +++ b/src/main.py
-@@ -136,15 +136,16 @@ class RewaitaApplication(Adw.Application):
-         success = portal.request_background_finish(result)
-         if(success):
-             print("Background permission granted")
-+            autostart_dir = os.path.join(GLib.getenv("HOME"), ".config", "autostart")
-+            if not os.path.exists(autostart_dir):
-+                os.makedirs(autostart_dir, exist_ok=True)
-             with open(os.path.join(GLib.getenv("HOME"), ".config", "autostart", "rewaita.desktop"), "w") as file:
+@@ -127,11 +127,9 @@ class RewaitaApplication(Adw.Application):
                  file.write("""
  [Desktop Entry]
  Type=Application
