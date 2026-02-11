@@ -16,6 +16,7 @@ BuildRequires:  appstream-glib
 BuildRequires:  gtk4-tools
 BuildRequires:  pkgconfig(gio-2.0)
 
+Requires:       fortune
 Requires:       gtk4
 Requires:       python3-gobject
 Requires:       python3-gobject-Gdk
@@ -59,13 +60,16 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/io.github
 %{_datadir}/icons/hicolor/scalable/actions/brush-symbolic.svg
 %{_datadir}/icons/hicolor/scalable/actions/code-symbolic.svg
 %{_datadir}/icons/hicolor/scalable/actions/external-link-symbolic.svg
+%{_datadir}/icons/hicolor/scalable/actions/folder-open-symbolic.svg
 %{_datadir}/icons/hicolor/scalable/actions/hammer-symbolic.svg
 %{_datadir}/icons/hicolor/scalable/actions/leaf-symbolic.svg
 %{_datadir}/icons/hicolor/scalable/actions/reload-symbolic.svg
 %{_datadir}/icons/hicolor/symbolic/apps/io.github.swordpuffin.rewaita-symbolic.svg
 %{_datadir}/metainfo/io.github.swordpuffin.rewaita.metainfo.xml
 %lang(nl) %{_datadir}/locale/nl/LC_MESSAGES/rewaita.mo
+%lang(pl) %{_datadir}/locale/pl/LC_MESSAGES/rewaita.mo
 %lang(ru) %{_datadir}/locale/ru/LC_MESSAGES/rewaita.mo
 %lang(tr) %{_datadir}/locale/tr/LC_MESSAGES/rewaita.mo
+%lang(vi) %{_datadir}/locale/vi/LC_MESSAGES/rewaita.mo
 
 %changelog
