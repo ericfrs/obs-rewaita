@@ -1,0 +1,41 @@
+--- a/src/widgets/theme_page.py	2026-08-12 21:05:56.000000000 -0300
++++ b/src/widgets/theme_page.py	2026-08-21 03:19:15.934609538 -0300
+@@ -17,9 +17,20 @@
+ #
+ # SPDX-License-Identifier: GPL-3.0-or-later
+ 
+-import gi, os, re
++import gi, os, re, shutil, subprocess
+ from gi.repository import Gtk, Adw, Gdk, GLib
+-from fortune import fortune
++try:
++    from fortune import fortune
++except ImportError:
++    def fortune():
++        if shutil.which("fortune"):
++            try:
++                out = subprocess.check_output(["fortune", "-s"], text=True, stderr=subprocess.DEVNULL).strip()
++                if out:
++                    return out
++            except Exception:
++                pass
++        return "Adwaita with colorful themes"
+ from .wallpaper_dialog import WallpaperDialog
+ 
+ def flowbox_sort_func(child1: Gtk.FlowBoxChild, child2: Gtk.FlowBoxChild, _):
+@@ -195,7 +206,11 @@
+             self.append(revealer)
+ 
+     def get_example_text(self):
+-        while(True):
+-            example = fortune()
+-            if(len(example) < 70 and not "<" in example and ">" not in example):
+-                return example
++        for _ in range(50):
++            try:
++                example = fortune()
++                if(len(example) < 70 and not "<" in example and ">" not in example):
++                    return example
++            except Exception:
++                break
++        return "Adwaita with colorful themes"
