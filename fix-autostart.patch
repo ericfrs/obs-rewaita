@@ -1,16 +1,24 @@
---- a/src/main.py
-+++ b/src/main.py
-@@ -127,11 +127,9 @@ class RewaitaApplication(Adw.Application):
-                 file.write("""
+--- a/src/utils.py
++++ b/src/utils.py
+@@ -280,7 +280,9 @@ def change_autostart(state):
+         if(os.path.exists(path)):
+             os.remove(path)
+     else:
+-        with open(os.path.join(GLib.getenv("HOME"), ".config", "autostart", "rewaita.desktop"), "w") as file:
++        autostart_dir = os.path.join(GLib.getenv("HOME"), ".config", "autostart")
++        os.makedirs(autostart_dir, exist_ok=True)
++        with open(os.path.join(autostart_dir, "rewaita.desktop"), "w") as file:
+             if(Xdp.Portal().running_under_flatpak()):
+                 command = "flatpak run io.github.swordpuffin.rewaita --background"
+             else:
+@@ -288,9 +290,7 @@ def change_autostart(state):
+             file.write(f"""
  [Desktop Entry]
  Type=Application
 -Name=io.github.swordpuffin.rewaita
 -X-XDP-Autostart=io.github.swordpuffin.rewaita
--Exec=flatpak run io.github.swordpuffin.rewaita --background
 +Name=Rewaita
-+Exec=rewaita --background
+ Exec={command}
  DBusActivatable=true
 -X-Flatpak=io.github.swordpuffin.rewaita
-                 """
-                 )
-         else:
+                 """)

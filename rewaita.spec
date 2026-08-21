@@ -24,6 +24,8 @@ Requires:       python3-Pillow
 Requires:       python3-numpy
 Requires:       typelib(GtkSource) = 5
 Requires:       typelib(Adw) = 1
+Requires:       typelib(Xdp) = 1.0
+Requires:       typelib(XdpGtk4) = 1.0
 Requires:       xdg-desktop-portal-gtk
 Recommends:     gnome-shell-extension-user-theme
 
@@ -40,6 +42,7 @@ LibAdwaita applications by applying different color palettes and themes.
 
 %install
 %meson_install
+%find_lang %{name}
 
 desktop-file-validate %{buildroot}%{_datadir}/applications/io.github.swordpuffin.rewaita.desktop
 
@@ -48,7 +51,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/io.github
 %check
 %meson_test
 
-%files
+%files -f %{name}.lang
 %license COPYING
 %doc README.md
 %{_bindir}/rewaita
@@ -56,20 +59,8 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/io.github
 %{_datadir}/applications/io.github.swordpuffin.rewaita.desktop
 %{_datadir}/dbus-1/services/io.github.swordpuffin.rewaita.service
 %{_datadir}/glib-2.0/schemas/io.github.swordpuffin.rewaita.gschema.xml
-%{_datadir}/icons/hicolor/*/apps/io.github.swordpuffin.rewaita.*
-%{_datadir}/icons/hicolor/scalable/actions/brush-symbolic.svg
-%{_datadir}/icons/hicolor/scalable/actions/code-symbolic.svg
-%{_datadir}/icons/hicolor/scalable/actions/external-link-symbolic.svg
-%{_datadir}/icons/hicolor/scalable/actions/folder-open-symbolic.svg
-%{_datadir}/icons/hicolor/scalable/actions/hammer-symbolic.svg
-%{_datadir}/icons/hicolor/scalable/actions/leaf-symbolic.svg
-%{_datadir}/icons/hicolor/scalable/actions/reload-symbolic.svg
-%{_datadir}/icons/hicolor/symbolic/apps/io.github.swordpuffin.rewaita-symbolic.svg
+%{_datadir}/icons/hicolor/*/apps/io.github.swordpuffin.rewaita*.*
+%{_datadir}/icons/hicolor/scalable/actions/*.svg
 %{_datadir}/metainfo/io.github.swordpuffin.rewaita.metainfo.xml
-%lang(nl) %{_datadir}/locale/nl/LC_MESSAGES/rewaita.mo
-%lang(pl) %{_datadir}/locale/pl/LC_MESSAGES/rewaita.mo
-%lang(ru) %{_datadir}/locale/ru/LC_MESSAGES/rewaita.mo
-%lang(tr) %{_datadir}/locale/tr/LC_MESSAGES/rewaita.mo
-%lang(vi) %{_datadir}/locale/vi/LC_MESSAGES/rewaita.mo
 
 %changelog
